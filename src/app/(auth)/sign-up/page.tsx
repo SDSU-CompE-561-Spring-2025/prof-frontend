@@ -1,3 +1,14 @@
+import RegisterForm from '@/components/RegisterForm';
+import Title from '@/components/Title';
+
 export default function SignUpPage() {
-	return <h1>SignUp Page </h1>;
+	return (
+		<>
+			<Title
+				title="Sign Up Page"
+				subtitle="Please Register your account"
+			/>
+			<RegisterForm />;
+		</>
+	);
 }

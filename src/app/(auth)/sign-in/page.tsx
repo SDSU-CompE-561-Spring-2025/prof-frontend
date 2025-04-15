@@ -1,3 +1,10 @@
+import Title from '@/components/Title';
+
 export default function SignInPage() {
-	return <h1>Sign In Page </h1>;
+	return (
+		<Title
+			title="Sign In Page"
+			subtitle="Please Sign In"
+		/>
+	);
 }
