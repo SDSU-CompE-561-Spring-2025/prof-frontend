@@ -44,6 +44,12 @@ export default function Home() {
 			>
 				New Button
 			</Button>
+			<Button
+				variant={'yellow'}
+				size={'lg'}
+			>
+				My New Yellow Button
+			</Button>
 		</main>
 	);
 }
