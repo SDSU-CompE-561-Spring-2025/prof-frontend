@@ -1,5 +1,7 @@
 'use client';
 
+import { Button } from '@/components/ui/button';
+
 export default function Home() {
 	const count = 0;
 	return (
@@ -11,6 +13,37 @@ export default function Home() {
 			>
 				Contact Support
 			</button>
+			<Button onClick={() => console.log(`Clicked ${count}`)}>New Button</Button>
+			<Button
+				variant={'link'}
+				onClick={() => console.log(`Clicked ${count}`)}
+			>
+				New Button
+			</Button>
+			<Button
+				variant={'ghost'}
+				onClick={() => console.log(`Clicked ${count}`)}
+			>
+				New Button
+			</Button>
+			<Button
+				variant={'destructive'}
+				onClick={() => console.log(`Clicked ${count}`)}
+			>
+				X
+			</Button>
+			<Button
+				variant={'outline'}
+				onClick={() => console.log(`Clicked ${count}`)}
+			>
+				New Button
+			</Button>
+			<Button
+				variant={'secondary'}
+				onClick={() => console.log(`Clicked ${count}`)}
+			>
+				New Button
+			</Button>
 		</main>
 	);
 }
