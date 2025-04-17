@@ -1,10 +1,3 @@
-import Title from '@/components/Title';
-
 export default function SupportPage() {
-	return (
-		<Title
-			title="Support Page"
-			subtitle="Please contact us"
-		/>
-	);
+	return <h1> Support Page</h1>;
 }
