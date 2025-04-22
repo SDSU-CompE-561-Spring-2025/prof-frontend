@@ -1,3 +1,9 @@
+import ProfileForm from '@/components/SignInForm';
+
 export default function SignInPage() {
-	return <h1>SignIn Page</h1>;
+	return (
+		<div className={'py-20'}>
+			<ProfileForm />
+		</div>
+	);
 }
