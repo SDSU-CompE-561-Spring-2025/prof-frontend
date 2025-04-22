@@ -2,9 +2,12 @@
 
 import Logo from '@/components/Logo';
 import { cn } from '@/lib/utils';
-import { buttonVariants } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import { LogIn, UserRoundPlus } from 'lucide-react';
+import { ThemeSwitcherButton } from '@/components/ThemeSwitcherButton';
+import UserButton from '@/components/UserButton';
 
 const navList = [
 	{
@@ -26,9 +29,6 @@ const navList = [
 ];
 
 function Navbar() {
-	const pathname = usePathname();
-	const isActive = pathname === '/';
-
 	return (
 		<div className={'hidden border-separate border-b bg-background md:block'}>
 			<nav className={'container flex items-center justify-between px-8'}>
@@ -43,6 +43,26 @@ function Navbar() {
 							/>
 						))}
 					</div>
+				</div>
+				<div className={'flex items-center gap-2'}>
+					<Link href={'/sign-in'}>
+						<Button
+							variant={'ghost'}
+							size={'icon'}
+						>
+							<LogIn />
+						</Button>
+					</Link>
+					<Link href={'/sign-up'}>
+						<Button
+							variant={'ghost'}
+							size={'icon'}
+						>
+							<UserRoundPlus />
+						</Button>
+					</Link>
+					<ThemeSwitcherButton />
+					<UserButton />
 				</div>
 			</nav>
 		</div>
