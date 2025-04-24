@@ -14,6 +14,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { toast } from 'sonner';
 
 const formSchema = z.object({
 	username: z.string().min(2, {
@@ -35,10 +36,30 @@ export default function ProfileForm() {
 	});
 
 	// 2. Define a submit handler.
-	function onSubmit(values: z.infer<typeof formSchema>) {
-		// Do something with the form values.
-		// ✅ This will be type-safe and validated.
+	async function onSubmit(values: z.infer<typeof formSchema>) {
 		console.log(values);
+		const data = values;
+
+		const response = await fetch('http://localhost:8000/auth/token', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded',
+			},
+			body: new URLSearchParams(data).toString(),
+		});
+
+		if (response.ok) {
+			const result = await response.json();
+			// toast('Everything went wrong');
+			localStorage.setItem('accessToken', result.access_token);
+
+			toast.error('Error');
+			setTimeout(() => {
+				window.location.href = '/';
+			}, 2000);
+			return true;
+		}
+		throw new Error('Invalid Credentials');
 	}
 
 	return (

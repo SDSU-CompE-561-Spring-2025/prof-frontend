@@ -4,6 +4,7 @@ import './globals.css';
 import Navbar from '@/components/Navbar';
 import { ThemeProvider } from '@/components/theme-provider';
 import Footer from '@/components/Footer';
+import { Toaster } from 'sonner';
 
 const geistSans = Geist({
 	variable: '--font-geist-sans',
@@ -43,6 +44,7 @@ export default function RootLayout({
 					<div className={'relative flex h-screen w-full flex-col'}>
 						<div className={'w-full'}>{children}</div>
 					</div>
+					<Toaster />
 
 					<Footer />
 				</ThemeProvider>
