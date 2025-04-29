@@ -9,6 +9,8 @@ import {
 	TableHeader,
 	TableRow,
 } from '@/components/ui/table';
+import useTransactions from '@/hooks/useTransactions';
+import SkeletonWrapper from '@/components/SkeletonWrapper';
 
 function TransactionHistory() {
 	const { data, isLoading, error } = useTransactions();
@@ -41,7 +43,7 @@ function TransactionHistory() {
 											transaction.description.slice(1)}
 									</TableCell>
 									<TableCell>{transaction.category_name}</TableCell>
-									<TableCell>${transaction.amount.toFixed(2)}</TableCell>
+									<TableCell>$ {transaction.amount.toFixed(2)}</TableCell>
 									<TableCell
 										className={
 											transaction.transaction_type === 'income' ? 'text-green-500' : 'text-red-500'

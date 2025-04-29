@@ -15,6 +15,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
+import { API_HOST_BASE_URL } from '@/lib/constants';
 
 const formSchema = z.object({
 	username: z.string().min(2, {
@@ -40,7 +41,7 @@ export default function ProfileForm() {
 		console.log(values);
 		const data = values;
 
-		const response = await fetch('http://localhost:8000/auth/token', {
+		const response = await fetch(`${API_HOST_BASE_URL}/auth/token`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded',
