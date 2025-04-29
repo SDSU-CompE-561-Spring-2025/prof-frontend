@@ -1,7 +1,16 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Skeleton } from '@/components/ui/skeleton';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+	Table,
+	TableBody,
+	TableCell,
+	TableHead,
+	TableHeader,
+	TableRow,
+} from '@/components/ui/table';
+import SkeletonWrapper from '@/components/SkeletonWrapper';
 
 export default function Home() {
 	const [data, setData] = useState<any>([]);
@@ -27,21 +36,46 @@ export default function Home() {
 
 	return (
 		<main>
-			<h1> Home Page</h1>
-			{loading ? (
-				<div className="flex flex-col items-center space-y-3 p-10 m-10">
-					<div className="items-center space-y-2">
-						<Skeleton className="h-8 w-[500px]" />
-						<Skeleton className="h-8 w-[500px]" />
-					</div>
-				</div>
-			) : (
-				<ul>
-					{data.map((item, index) => (
-						<li key={index}>{item.category_name}</li>
-					))}
-				</ul>
-			)}
+			<SkeletonWrapper isLoading={loading}>
+				<Card className="mt-6">
+					<CardHeader>
+						<CardTitle>Latest Transactions</CardTitle>
+					</CardHeader>
+					<CardContent>
+						<Table>
+							<TableHeader>
+								<TableRow>
+									<TableHead>Description</TableHead>
+									<TableHead>Category</TableHead>
+									<TableHead>Amount</TableHead>
+									<TableHead>Type</TableHead>
+								</TableRow>
+							</TableHeader>
+							<TableBody>
+								{data?.map((transaction) => (
+									<TableRow key={transaction.id}>
+										<TableCell>
+											{transaction.description.charAt(0).toUpperCase() +
+												transaction.description.slice(1)}
+										</TableCell>
+										<TableCell>{transaction.category_name}</TableCell>
+										<TableCell>${transaction.amount.toFixed(2)}</TableCell>
+										<TableCell
+											className={
+												transaction.transaction_type === 'income'
+													? 'text-green-500'
+													: 'text-red-500'
+											}
+										>
+											{transaction.transaction_type}
+										</TableCell>
+									</TableRow>
+								))}
+							</TableBody>
+						</Table>
+					</CardContent>
+				</Card>
+			</SkeletonWrapper>
 		</main>
 	);
 }
